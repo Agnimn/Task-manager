@@ -5,17 +5,32 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  // ✅ Debug ENV variable
+  console.log("API URL:", import.meta.env.VITE_API_URL);
+
+  // Optional safety check (prevents silent crash)
+  if (!import.meta.env.VITE_API_URL) {
+    return (
+      <div style={{ color: "white", textAlign: "center", marginTop: "50px" }}>
+        <h2>⚠️ Environment Variable Missing</h2>
+        <p>VITE_API_URL is not set</p>
+      </div>
+    );
+  }
+
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+
         <Route
           path="/dashboard"
           element={
@@ -24,6 +39,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route path="/" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>
