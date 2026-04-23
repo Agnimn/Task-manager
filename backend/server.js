@@ -16,14 +16,29 @@ const app = express();
 // Connect to database
 connectDB();
 
-// Middleware
+//  CORS Configuration (FIXED)
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL, // your Vercel URL
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
-  }),
+  })
 );
 
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
