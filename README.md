@@ -2,18 +2,6 @@
 
 A full-stack Task Manager application built with MongoDB, Express, React (Vite), and Node.js featuring complete authentication, task management, and a modern UI.
 
-## 📋 Table of Contents
-
-1. [Features](#features)
-2. [Tech Stack](#tech-stack)
-3. [Project Structure](#project-structure)
-4. [Installation & Setup](#installation--setup)
-5. [Running the Application](#running-the-application)
-6. [API Documentation](#api-documentation)
-7. [Frontend Features](#frontend-features)
-8. [Deployment Guide](#deployment-guide)
-9. [Troubleshooting](#troubleshooting)
-
 ---
 
 ## ✨ Features
